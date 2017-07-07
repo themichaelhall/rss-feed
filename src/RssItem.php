@@ -1,0 +1,136 @@
+<?php
+/**
+ * This file is a part of the rss-feed package.
+ *
+ * Read more at https://github.com/themichaelhall/rss-feed
+ */
+declare(strict_types=1);
+
+namespace MichaelHall\RssFeed;
+
+use DataTypes\Interfaces\UrlInterface;
+use MichaelHall\RssFeed\Interfaces\RssItemInterface;
+
+/**
+ * Class representing a RSS item.
+ *
+ * @since 1.0.0
+ */
+class RssItem implements RssItemInterface
+{
+    /**
+     * Constructs a RSS item.
+     *
+     * @since 1.0.0
+     *
+     * @param string             $title       The title.
+     * @param UrlInterface       $link        The link.
+     * @param string             $description The description.
+     * @param \DateTimeImmutable $pubDate     The publication date.
+     */
+    public function __construct(string $title, UrlInterface $link, string $description, \DateTimeImmutable $pubDate)
+    {
+        $this->myTitle = $title;
+        $this->myLink = $link;
+        $this->myDescription = $description;
+        $this->myPubDate = $pubDate;
+    }
+
+    /**
+     * Returns the description.
+     *
+     * @since 1.0.0
+     *
+     * @return string The description.
+     */
+    public function getDescription(): string
+    {
+        return $this->myDescription;
+    }
+
+    /**
+     * Returns the link.
+     *
+     * @since 1.0.0
+     *
+     * @return UrlInterface The link.
+     */
+    public function getLink(): UrlInterface
+    {
+        return $this->myLink;
+    }
+
+    /**
+     * Returns the publication date.
+     *
+     * @since 1.0.0
+     *
+     * @return \DateTimeImmutable The publication date.
+     */
+    public function getPubDate(): \DateTimeImmutable
+    {
+        return $this->myPubDate;
+    }
+
+    /**
+     * Returns the title.
+     *
+     * @since 1.0.0
+     *
+     * @return string The title.
+     */
+    public function getTitle(): string
+    {
+        return $this->myTitle;
+    }
+
+    /**
+     * Returns the item as an XML node.
+     *
+     * @since 1.0.0
+     *
+     * @return \SimpleXMLElement The XML node.
+     */
+    public function toXml(): \SimpleXMLElement
+    {
+        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item/>');
+        $result->addChild('title', $this->myTitle);
+        $result->addChild('link', $this->myLink->__toString());
+        $result->addChild('description', $this->myDescription);
+        $result->addChild('pubDate', $this->myPubDate->format(\DATE_RSS));
+
+        return $result;
+    }
+
+    /**
+     * Returns the item as a string.
+     *
+     * @since 1.0.0
+     *
+     * @return string The item as a string.
+     */
+    public function __toString(): string
+    {
+        return $this->toXml()->asXML();
+    }
+
+    /**
+     * @var string My description.
+     */
+    private $myDescription;
+
+    /**
+     * @var UrlInterface My link.
+     */
+    private $myLink;
+
+    /**
+     * @var \DateTimeImmutable My publication date.
+     */
+    private $myPubDate;
+
+    /**
+     * @var string My title.
+     */
+    private $myTitle;
+}

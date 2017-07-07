@@ -1,2 +1,3 @@
-# rss-feed
-Simple RSS feed creator for PHP
+# RSS Feed
+
+This project is under construction and is not yet complete. Please check back later.
