@@ -18,6 +18,15 @@ use DataTypes\Interfaces\UrlInterface;
 interface RssFeedInterface
 {
     /**
+     * Adds an item to the feed.
+     *
+     * @since 1.0.0
+     *
+     * @param RssItemInterface $item The item.
+     */
+    public function addItem(RssItemInterface $item): void;
+
+    /**
      * Returns the description.
      *
      * @since 1.0.0

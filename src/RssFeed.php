@@ -10,6 +10,7 @@ namespace MichaelHall\RssFeed;
 
 use DataTypes\Interfaces\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssFeedInterface;
+use MichaelHall\RssFeed\Interfaces\RssItemInterface;
 
 /**
  * Class representing a RSS feed.
@@ -32,6 +33,19 @@ class RssFeed implements RssFeedInterface
         $this->myTitle = $title;
         $this->myLink = $link;
         $this->myDescription = $description;
+        $this->myItems = [];
+    }
+
+    /**
+     * Adds an item to the feed.
+     *
+     * @since 1.0.0
+     *
+     * @param RssItemInterface $item The item.
+     */
+    public function addItem(RssItemInterface $item): void
+    {
+        $this->myItems[] = $item;
     }
 
     /**
@@ -86,6 +100,10 @@ class RssFeed implements RssFeedInterface
         $channel->addChild('link', $this->myLink->__toString());
         $channel->addChild('description', $this->myDescription);
 
+        foreach ($this->myItems as $item) {
+            self::addSimpleXmlChild($channel, $item->toXml());
+        }
+
         return $result;
     }
 
@@ -102,6 +120,21 @@ class RssFeed implements RssFeedInterface
     }
 
     /**
+     * Adds a SimpleXMLElement as a child to a root element.
+     *
+     * @param \SimpleXMLElement $root  The root element.
+     * @param \SimpleXMLElement $child The child element.
+     */
+    private static function addSimpleXmlChild(\SimpleXMLElement $root, \SimpleXMLElement $child): void
+    {
+        $node = $root->addChild($child->getName(), (string)$child);
+
+        foreach ($child->children() as $c) {
+            self::addSimpleXmlChild($node, $c);
+        }
+    }
+
+    /**
      * @var string My description.
      */
     private $myDescription;
@@ -115,4 +148,9 @@ class RssFeed implements RssFeedInterface
      * @var string My title.
      */
     private $myTitle;
+
+    /**
+     * @var RssItemInterface[] My items.
+     */
+    private $myItems;
 }
