@@ -129,6 +129,10 @@ class RssFeed implements RssFeedInterface
     {
         $node = $root->addChild($child->getName(), (string) $child);
 
+        foreach ($child->attributes() as $attributeName => $attributeValue) {
+            $node->addAttribute($attributeName, (string) $attributeValue);
+        }
+
         foreach ($child->children() as $c) {
             self::addSimpleXmlChild($node, $c);
         }

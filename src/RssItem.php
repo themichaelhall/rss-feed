@@ -34,6 +34,8 @@ class RssItem implements RssItemInterface
         $this->myLink = $link;
         $this->myDescription = $description;
         $this->myPubDate = $pubDate;
+        $this->myGuid = $link->__toString();
+        $this->myGuidIsPermaLink = true;
     }
 
     /**
@@ -46,6 +48,18 @@ class RssItem implements RssItemInterface
     public function getDescription(): string
     {
         return $this->myDescription;
+    }
+
+    /**
+     * Returns the GUID.
+     *
+     * @since 1.0.0
+     *
+     * @return string The GUID.
+     */
+    public function getGuid(): string
+    {
+        return $this->myGuid;
     }
 
     /**
@@ -85,6 +99,32 @@ class RssItem implements RssItemInterface
     }
 
     /**
+     * Returns true if the GUID is a perma link, false otherwise.
+     *
+     * @since 1.0.0
+     *
+     * @return bool true if the GUID is a perma link, false otherwise.
+     */
+    public function isGuidPermaLink(): bool
+    {
+        return $this->myGuidIsPermaLink;
+    }
+
+    /**
+     * Sets the GUID.
+     *
+     * @since 1.0.0
+     *
+     * @param string $guid        The GUID.
+     * @param bool   $isPermaLink True if GUID is a perma link, false otherwise.
+     */
+    public function setGuid(string $guid, bool $isPermaLink): void
+    {
+        $this->myGuid = $guid;
+        $this->myGuidIsPermaLink = $isPermaLink;
+    }
+
+    /**
      * Returns the item as an XML node.
      *
      * @since 1.0.0
@@ -98,6 +138,7 @@ class RssItem implements RssItemInterface
         $result->addChild('link', $this->myLink->__toString());
         $result->addChild('description', $this->myDescription);
         $result->addChild('pubDate', $this->myPubDate->format(\DATE_RSS));
+        $result->addChild('guid', $this->myGuid)->addAttribute('isPermaLink', $this->myGuidIsPermaLink ? 'true' : 'false');
 
         return $result;
     }
@@ -133,4 +174,14 @@ class RssItem implements RssItemInterface
      * @var string My title.
      */
     private $myTitle;
+
+    /**
+     * @var string My GUID.
+     */
+    private $myGuid;
+
+    /**
+     * @var bool True if GUID is perma link, false otherwise.
+     */
+    private $myGuidIsPermaLink;
 }
