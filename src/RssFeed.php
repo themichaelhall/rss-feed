@@ -34,6 +34,7 @@ class RssFeed implements RssFeedInterface
         $this->myLink = $link;
         $this->myDescription = $description;
         $this->myItems = [];
+        $this->myFeedUrl = null;
     }
 
     /**
@@ -85,6 +86,18 @@ class RssFeed implements RssFeedInterface
     }
 
     /**
+     * Sets the feed url.
+     *
+     * @since 1.0.0
+     *
+     * @param UrlInterface $url The feed url.
+     */
+    public function setFeedUrl(UrlInterface $url): void
+    {
+        $this->myFeedUrl = $url;
+    }
+
+    /**
      * Returns the feed as an XML node.
      *
      * @since 1.0.0
@@ -93,12 +106,19 @@ class RssFeed implements RssFeedInterface
      */
     public function toXml(): \SimpleXMLElement
     {
-        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"/>');
+        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->myFeedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
 
         $channel = $result->addChild('channel');
         $channel->addChild('title', $this->myTitle);
         $channel->addChild('link', $this->myLink->__toString());
         $channel->addChild('description', $this->myDescription);
+
+        if ($this->myFeedUrl !== null) {
+            $atomLink = $channel->addChild('atom:atom:link');
+            $atomLink->addAttribute('href', $this->myFeedUrl->__toString());
+            $atomLink->addAttribute('rel', 'self');
+            $atomLink->addAttribute('type', 'application/rss+xml');
+        }
 
         foreach ($this->myItems as $item) {
             self::addSimpleXmlChild($channel, $item->toXml());
@@ -157,4 +177,9 @@ class RssFeed implements RssFeedInterface
      * @var RssItemInterface[] My items.
      */
     private $myItems;
+
+    /**
+     * @var UrlInterface|null My feed url.
+     */
+    private $myFeedUrl;
 }

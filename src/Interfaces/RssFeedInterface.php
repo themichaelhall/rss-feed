@@ -54,6 +54,15 @@ interface RssFeedInterface
     public function getTitle(): string;
 
     /**
+     * Sets the feed url.
+     *
+     * @since 1.0.0
+     *
+     * @param UrlInterface $url The feed url.
+     */
+    public function setFeedUrl(UrlInterface $url): void;
+
+    /**
      * Returns the item as an XML node.
      *
      * @since 1.0.0
