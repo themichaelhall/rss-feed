@@ -118,7 +118,7 @@ class RssItem implements RssItemInterface
      * @param string $guid        The GUID.
      * @param bool   $isPermaLink True if GUID is a perma link, false otherwise.
      */
-    public function setGuid(string $guid, bool $isPermaLink): void
+    public function setGuid(string $guid, bool $isPermaLink = false): void
     {
         $this->myGuid = $guid;
         $this->myGuidIsPermaLink = $isPermaLink;

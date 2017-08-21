@@ -79,7 +79,7 @@ interface RssItemInterface
      * @param string $guid        The GUID.
      * @param bool   $isPermaLink True if GUID is a perma link, false otherwise.
      */
-    public function setGuid(string $guid, bool $isPermaLink): void;
+    public function setGuid(string $guid, bool $isPermaLink = false): void;
 
     /**
      * Returns the item as an XML node.
