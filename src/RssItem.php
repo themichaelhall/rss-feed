@@ -134,11 +134,11 @@ class RssItem implements RssItemInterface
     public function toXml(): \SimpleXMLElement
     {
         $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item/>');
-        $result->addChild('title', $this->myTitle);
-        $result->addChild('link', $this->myLink->__toString());
-        $result->addChild('description', $this->myDescription);
-        $result->addChild('pubDate', $this->myPubDate->format(\DATE_RSS));
-        $result->addChild('guid', $this->myGuid)->addAttribute('isPermaLink', $this->myGuidIsPermaLink ? 'true' : 'false');
+        $result->addChild('title', self::encode($this->myTitle));
+        $result->addChild('link', self::encode($this->myLink->__toString()));
+        $result->addChild('description', self::encode($this->myDescription));
+        $result->addChild('pubDate', self::encode($this->myPubDate->format(\DATE_RSS)));
+        $result->addChild('guid', self::encode($this->myGuid))->addAttribute('isPermaLink', $this->myGuidIsPermaLink ? 'true' : 'false');
 
         return $result;
     }
@@ -153,6 +153,18 @@ class RssItem implements RssItemInterface
     public function __toString(): string
     {
         return $this->toXml()->asXML();
+    }
+
+    /**
+     * Encodes a string.
+     *
+     * @param string $s The string.
+     *
+     * @return string The encoded string.
+     */
+    private static function encode(string $s): string
+    {
+        return str_replace('&', '&amp;', $s);
     }
 
     /**

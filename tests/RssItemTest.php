@@ -65,4 +65,21 @@ class RssItemTest extends TestCase
         self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"false\">FooBar</guid></item>\n", $rssItem->toXml()->asXML());
         self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"false\">FooBar</guid></item>\n", $rssItem->__toString());
     }
+
+    /**
+     * Test encode values.
+     */
+    public function testEncodeValues()
+    {
+        $rssItem = new RssItem('Foo & <Bar>', Url::parse('https://example.com/?foo&bar'), 'This is the <description> & Baz.', new \DateTimeImmutable('2017-01-02 10:20:30', new \DateTimeZone('Europe/Stockholm')));
+
+        self::assertSame('Foo & <Bar>', $rssItem->getTitle());
+        self::assertSame('https://example.com/?foo&bar', $rssItem->getLink()->__toString());
+        self::assertSame('This is the <description> & Baz.', $rssItem->getDescription());
+        self::assertSame('2017-01-02 10:20:30 CET', $rssItem->getPubDate()->format('Y-m-d H:i:s T'));
+        self::assertSame('https://example.com/?foo&bar', $rssItem->getGuid());
+        self::assertTrue($rssItem->isGuidPermaLink());
+        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>Foo &amp; &lt;Bar&gt;</title><link>https://example.com/?foo&amp;bar</link><description>This is the &lt;description&gt; &amp; Baz.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">https://example.com/?foo&amp;bar</guid></item>\n", $rssItem->toXml()->asXML());
+        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>Foo &amp; &lt;Bar&gt;</title><link>https://example.com/?foo&amp;bar</link><description>This is the &lt;description&gt; &amp; Baz.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">https://example.com/?foo&amp;bar</guid></item>\n", $rssItem->__toString());
+    }
 }

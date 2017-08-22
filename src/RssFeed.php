@@ -109,13 +109,13 @@ class RssFeed implements RssFeedInterface
         $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->myFeedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
 
         $channel = $result->addChild('channel');
-        $channel->addChild('title', $this->myTitle);
-        $channel->addChild('link', $this->myLink->__toString());
-        $channel->addChild('description', $this->myDescription);
+        $channel->addChild('title', self::encode($this->myTitle));
+        $channel->addChild('link', self::encode($this->myLink->__toString()));
+        $channel->addChild('description', self::encode($this->myDescription));
 
         if ($this->myFeedUrl !== null) {
             $atomLink = $channel->addChild('atom:atom:link');
-            $atomLink->addAttribute('href', $this->myFeedUrl->__toString());
+            $atomLink->addAttribute('href', self::encode($this->myFeedUrl->__toString()));
             $atomLink->addAttribute('rel', 'self');
             $atomLink->addAttribute('type', 'application/rss+xml');
         }
@@ -137,6 +137,18 @@ class RssFeed implements RssFeedInterface
     public function __toString(): string
     {
         return $this->toXml()->asXML();
+    }
+
+    /**
+     * Encodes a string.
+     *
+     * @param string $s The string.
+     *
+     * @return string The encoded string.
+     */
+    private static function encode(string $s): string
+    {
+        return str_replace('&', '&amp;', $s);
     }
 
     /**
