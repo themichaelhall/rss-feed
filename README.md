@@ -17,7 +17,7 @@ Simple RSS feed creator.
 ## Install with composer
 
 ``` bash
-$ composer require "michaelhall/rss-feed:~1.0"
+$ composer require michaelhall/rss-feed
 ```
 
 ## Basic usage

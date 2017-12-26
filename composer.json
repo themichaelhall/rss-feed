@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=7.1",
-    "datatypes/datatypes": "~1.0",
+    "datatypes/datatypes": "~2.0",
     "ext-xml": "*"
   },
   "require-dev": {
