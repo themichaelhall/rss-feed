@@ -10,6 +10,7 @@ namespace MichaelHall\RssFeed;
 
 use DataTypes\Interfaces\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssFeedInterface;
+use MichaelHall\RssFeed\Interfaces\RssImageInterface;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
 
 /**
@@ -35,6 +36,7 @@ class RssFeed implements RssFeedInterface
         $this->myDescription = $description;
         $this->myItems = [];
         $this->myFeedUrl = null;
+        $this->myImage = null;
     }
 
     /**
@@ -59,6 +61,18 @@ class RssFeed implements RssFeedInterface
     public function getDescription(): string
     {
         return $this->myDescription;
+    }
+
+    /**
+     * Return the image or null if feed has no image.
+     *
+     * @since 2.1.0
+     *
+     * @return RssImageInterface|null The image or null if feed has no image.
+     */
+    public function getImage(): ?RssImageInterface
+    {
+        return $this->myImage;
     }
 
     /**
@@ -194,4 +208,9 @@ class RssFeed implements RssFeedInterface
      * @var UrlInterface|null My feed url.
      */
     private $myFeedUrl;
+
+    /**
+     * @var RssImageInterface|null My image.
+     */
+    private $myImage;
 }
