@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [2.1.0] - 2018-01-12
 - Added feed image functionality.
 
