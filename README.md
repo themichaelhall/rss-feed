@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/themichaelhall/rss-feed.svg?branch=master)](https://travis-ci.org/themichaelhall/rss-feed)
 [![codecov.io](https://codecov.io/gh/themichaelhall/rss-feed/coverage.svg?branch=master)](https://codecov.io/gh/themichaelhall/rss-feed?branch=master)
-[![Code Climate](https://codeclimate.com/github/themichaelhall/rss-feed/badges/gpa.svg)](https://codeclimate.com/github/themichaelhall/rss-feed)
+[![Maintainability](https://api.codeclimate.com/v1/badges/203d00c4aa662524bb28/maintainability)](https://codeclimate.com/github/themichaelhall/rss-feed/maintainability)
 [![StyleCI](https://styleci.io/repos/96578177/shield?style=flat)](https://styleci.io/repos/96578177)
 [![License](https://poser.pugx.org/michaelhall/rss-feed/license)](https://packagist.org/packages/michaelhall/rss-feed)
 [![Latest Stable Version](https://poser.pugx.org/michaelhall/rss-feed/v/stable)](https://packagist.org/packages/michaelhall/rss-feed)
@@ -49,6 +49,18 @@ $feed->addItem($feedItem);
 
 // Prints the RSS feed.
 echo $feed;
+```
+
+### Add an image to the feed
+
+```php
+$feedImage = new RssImage(
+   \DataTypes\Url::parse('https://example.com/path/to/image'),
+   'Image Title',
+   \DataTypes\Url::parse('https://example.com/')
+);
+
+$feed->setImage($feedImage);
 ```
 
 ## License
