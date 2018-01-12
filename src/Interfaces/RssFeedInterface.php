@@ -36,6 +36,15 @@ interface RssFeedInterface
     public function getDescription(): string;
 
     /**
+     * Return the image or null if feed has no image.
+     *
+     * @since 2.1.0
+     *
+     * @return RssImageInterface|null The image or null if feed has no image.
+     */
+    public function getImage(): ?RssImageInterface;
+
+    /**
      * Returns the link.
      *
      * @since 1.0.0
@@ -61,6 +70,15 @@ interface RssFeedInterface
      * @param UrlInterface $url The feed url.
      */
     public function setFeedUrl(UrlInterface $url): void;
+
+    /**
+     * Sets the image.
+     *
+     * @since 2.1.0
+     *
+     * @param RssImageInterface $image The image.
+     */
+    public function setImage(RssImageInterface $image): void;
 
     /**
      * Returns the item as an XML node.
