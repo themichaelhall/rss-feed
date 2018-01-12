@@ -112,6 +112,18 @@ class RssFeed implements RssFeedInterface
     }
 
     /**
+     * Sets the image.
+     *
+     * @since 2.1.0
+     *
+     * @param RssImageInterface $image The image.
+     */
+    public function setImage(RssImageInterface $image): void
+    {
+        $this->myImage = $image;
+    }
+
+    /**
      * Returns the feed as an XML node.
      *
      * @since 1.0.0
@@ -132,6 +144,10 @@ class RssFeed implements RssFeedInterface
             $atomLink->addAttribute('href', self::encode($this->myFeedUrl->__toString()));
             $atomLink->addAttribute('rel', 'self');
             $atomLink->addAttribute('type', 'application/rss+xml');
+        }
+
+        if ($this->myImage !== null) {
+            self::addSimpleXmlChild($channel, $this->myImage->toXml());
         }
 
         foreach ($this->myItems as $item) {

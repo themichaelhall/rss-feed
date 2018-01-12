@@ -72,6 +72,15 @@ interface RssFeedInterface
     public function setFeedUrl(UrlInterface $url): void;
 
     /**
+     * Sets the image.
+     *
+     * @since 2.1.0
+     *
+     * @param RssImageInterface $image The image.
+     */
+    public function setImage(RssImageInterface $image): void;
+
+    /**
      * Returns the item as an XML node.
      *
      * @since 1.0.0
