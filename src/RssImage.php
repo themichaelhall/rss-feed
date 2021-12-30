@@ -1,9 +1,11 @@
 <?php
+
 /**
  * This file is a part of the rss-feed package.
  *
  * Read more at https://github.com/themichaelhall/rss-feed
  */
+
 declare(strict_types=1);
 
 namespace MichaelHall\RssFeed;
