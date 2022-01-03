@@ -2,6 +2,7 @@
   "name": "michaelhall/rss-feed",
   "description": "Simple RSS feed creator for PHP",
   "license": "MIT",
+  "type": "library",
   "keywords": [
     "rss",
     "feed"
@@ -13,12 +14,12 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
-    "datatypes/datatypes": "~2.0",
-    "ext-xml": "*"
+    "php": ">=7.3",
+    "datatypes/datatypes": "^2.0",
+    "ext-simplexml": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "~6.1"
+    "phpunit/phpunit": "^9.0"
   },
   "autoload": {
     "psr-4": {

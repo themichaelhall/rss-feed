@@ -1,4 +1,5 @@
 ## Unreleased
+- Changed required PHP version to >= 7.3.
 
 ## [2.1.0] - 2018-01-12
 - Added feed image functionality.
