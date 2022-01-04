@@ -14,14 +14,14 @@ use DataTypes\Interfaces\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
 
 /**
- * Class representing a RSS item.
+ * Class representing an RSS item.
  *
  * @since 1.0.0
  */
 class RssItem implements RssItemInterface
 {
     /**
-     * Constructs a RSS item.
+     * Constructs an RSS item.
      *
      * @since 1.0.0
      *

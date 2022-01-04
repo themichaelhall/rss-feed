@@ -16,14 +16,14 @@ use MichaelHall\RssFeed\Interfaces\RssImageInterface;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
 
 /**
- * Class representing a RSS feed.
+ * Class representing an RSS feed.
  *
  * @since 1.0.0
  */
 class RssFeed implements RssFeedInterface
 {
     /**
-     * Constructs a RSS feed.
+     * Constructs an RSS feed.
      *
      * @since 1.0.0
      *

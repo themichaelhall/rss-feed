@@ -13,7 +13,7 @@ namespace MichaelHall\RssFeed\Interfaces;
 use DataTypes\Interfaces\UrlInterface;
 
 /**
- * Interface representing a RSS image.
+ * Interface representing an RSS image.
  *
  * @since 2.1.0
  */
