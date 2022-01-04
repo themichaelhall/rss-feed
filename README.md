@@ -1,5 +1,6 @@
 # RSS Feed
 
+[![Tests](https://github.com/themichaelhall/rss-feed/workflows/tests/badge.svg?branch=master)](https://github.com/themichaelhall/rss-feed/actions)
 [![Build Status](https://travis-ci.org/themichaelhall/rss-feed.svg?branch=master)](https://travis-ci.org/themichaelhall/rss-feed)
 [![codecov.io](https://codecov.io/gh/themichaelhall/rss-feed/coverage.svg?branch=master)](https://codecov.io/gh/themichaelhall/rss-feed?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/203d00c4aa662524bb28/maintainability)](https://codeclimate.com/github/themichaelhall/rss-feed/maintainability)
