@@ -1,9 +1,6 @@
 # RSS Feed
 
 [![Tests](https://github.com/themichaelhall/rss-feed/workflows/tests/badge.svg?branch=master)](https://github.com/themichaelhall/rss-feed/actions)
-[![Build Status](https://travis-ci.org/themichaelhall/rss-feed.svg?branch=master)](https://travis-ci.org/themichaelhall/rss-feed)
-[![codecov.io](https://codecov.io/gh/themichaelhall/rss-feed/coverage.svg?branch=master)](https://codecov.io/gh/themichaelhall/rss-feed?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/203d00c4aa662524bb28/maintainability)](https://codeclimate.com/github/themichaelhall/rss-feed/maintainability)
 [![StyleCI](https://styleci.io/repos/96578177/shield?style=flat)](https://styleci.io/repos/96578177)
 [![License](https://poser.pugx.org/michaelhall/rss-feed/license)](https://packagist.org/packages/michaelhall/rss-feed)
 [![Latest Stable Version](https://poser.pugx.org/michaelhall/rss-feed/v/stable)](https://packagist.org/packages/michaelhall/rss-feed)
