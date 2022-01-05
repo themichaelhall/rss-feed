@@ -31,9 +31,9 @@ class RssImage implements RssImageInterface
      */
     public function __construct(UrlInterface $url, string $title, UrlInterface $link)
     {
-        $this->myUrl = $url;
-        $this->myTitle = $title;
-        $this->myLink = $link;
+        $this->url = $url;
+        $this->title = $title;
+        $this->link = $link;
     }
 
     /**
@@ -45,7 +45,7 @@ class RssImage implements RssImageInterface
      */
     public function getLink(): UrlInterface
     {
-        return $this->myLink;
+        return $this->link;
     }
 
     /**
@@ -57,7 +57,7 @@ class RssImage implements RssImageInterface
      */
     public function getTitle(): string
     {
-        return $this->myTitle;
+        return $this->title;
     }
 
     /**
@@ -69,7 +69,7 @@ class RssImage implements RssImageInterface
      */
     public function getUrl(): UrlInterface
     {
-        return $this->myUrl;
+        return $this->url;
     }
 
     /**
@@ -82,9 +82,9 @@ class RssImage implements RssImageInterface
     public function toXml(): \SimpleXMLElement
     {
         $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><image/>');
-        $result->addChild('url', self::encode($this->myUrl->__toString()));
-        $result->addChild('title', self::encode($this->myTitle));
-        $result->addChild('link', self::encode($this->myLink->__toString()));
+        $result->addChild('url', self::encode($this->url->__toString()));
+        $result->addChild('title', self::encode($this->title));
+        $result->addChild('link', self::encode($this->link->__toString()));
 
         return $result;
     }
@@ -114,17 +114,17 @@ class RssImage implements RssImageInterface
     }
 
     /**
-     * @var UrlInterface My url.
+     * @var UrlInterface The url.
      */
-    private $myUrl;
+    private $url;
 
     /**
-     * @var string My title.
+     * @var string The title.
      */
-    private $myTitle;
+    private $title;
 
     /**
-     * @var UrlInterface My link.
+     * @var UrlInterface The link.
      */
-    private $myLink;
+    private $link;
 }

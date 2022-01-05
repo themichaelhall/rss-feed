@@ -32,12 +32,12 @@ class RssItem implements RssItemInterface
      */
     public function __construct(string $title, UrlInterface $link, string $description, \DateTimeImmutable $pubDate)
     {
-        $this->myTitle = $title;
-        $this->myLink = $link;
-        $this->myDescription = $description;
-        $this->myPubDate = $pubDate;
-        $this->myGuid = $link->__toString();
-        $this->myGuidIsPermaLink = true;
+        $this->title = $title;
+        $this->link = $link;
+        $this->description = $description;
+        $this->pubDate = $pubDate;
+        $this->guid = $link->__toString();
+        $this->guidIsPermaLink = true;
     }
 
     /**
@@ -49,7 +49,7 @@ class RssItem implements RssItemInterface
      */
     public function getDescription(): string
     {
-        return $this->myDescription;
+        return $this->description;
     }
 
     /**
@@ -61,7 +61,7 @@ class RssItem implements RssItemInterface
      */
     public function getGuid(): string
     {
-        return $this->myGuid;
+        return $this->guid;
     }
 
     /**
@@ -73,7 +73,7 @@ class RssItem implements RssItemInterface
      */
     public function getLink(): UrlInterface
     {
-        return $this->myLink;
+        return $this->link;
     }
 
     /**
@@ -85,7 +85,7 @@ class RssItem implements RssItemInterface
      */
     public function getPubDate(): \DateTimeImmutable
     {
-        return $this->myPubDate;
+        return $this->pubDate;
     }
 
     /**
@@ -97,7 +97,7 @@ class RssItem implements RssItemInterface
      */
     public function getTitle(): string
     {
-        return $this->myTitle;
+        return $this->title;
     }
 
     /**
@@ -109,7 +109,7 @@ class RssItem implements RssItemInterface
      */
     public function isGuidPermaLink(): bool
     {
-        return $this->myGuidIsPermaLink;
+        return $this->guidIsPermaLink;
     }
 
     /**
@@ -122,8 +122,8 @@ class RssItem implements RssItemInterface
      */
     public function setGuid(string $guid, bool $isPermaLink = false): void
     {
-        $this->myGuid = $guid;
-        $this->myGuidIsPermaLink = $isPermaLink;
+        $this->guid = $guid;
+        $this->guidIsPermaLink = $isPermaLink;
     }
 
     /**
@@ -136,11 +136,11 @@ class RssItem implements RssItemInterface
     public function toXml(): \SimpleXMLElement
     {
         $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item/>');
-        $result->addChild('title', self::encode($this->myTitle));
-        $result->addChild('link', self::encode($this->myLink->__toString()));
-        $result->addChild('description', self::encode($this->myDescription));
-        $result->addChild('pubDate', self::encode($this->myPubDate->format(\DATE_RSS)));
-        $result->addChild('guid', self::encode($this->myGuid))->addAttribute('isPermaLink', $this->myGuidIsPermaLink ? 'true' : 'false');
+        $result->addChild('title', self::encode($this->title));
+        $result->addChild('link', self::encode($this->link->__toString()));
+        $result->addChild('description', self::encode($this->description));
+        $result->addChild('pubDate', self::encode($this->pubDate->format(\DATE_RSS)));
+        $result->addChild('guid', self::encode($this->guid))->addAttribute('isPermaLink', $this->guidIsPermaLink ? 'true' : 'false');
 
         return $result;
     }
@@ -170,32 +170,32 @@ class RssItem implements RssItemInterface
     }
 
     /**
-     * @var string My description.
+     * @var string The description.
      */
-    private $myDescription;
+    private $description;
 
     /**
-     * @var UrlInterface My link.
+     * @var UrlInterface The link.
      */
-    private $myLink;
+    private $link;
 
     /**
-     * @var \DateTimeImmutable My publication date.
+     * @var \DateTimeImmutable The publication date.
      */
-    private $myPubDate;
+    private $pubDate;
 
     /**
-     * @var string My title.
+     * @var string The title.
      */
-    private $myTitle;
+    private $title;
 
     /**
-     * @var string My GUID.
+     * @var string The GUID.
      */
-    private $myGuid;
+    private $guid;
 
     /**
      * @var bool True if GUID is perma link, false otherwise.
      */
-    private $myGuidIsPermaLink;
+    private $guidIsPermaLink;
 }

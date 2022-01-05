@@ -33,12 +33,12 @@ class RssFeed implements RssFeedInterface
      */
     public function __construct(string $title, UrlInterface $link, string $description)
     {
-        $this->myTitle = $title;
-        $this->myLink = $link;
-        $this->myDescription = $description;
-        $this->myItems = [];
-        $this->myFeedUrl = null;
-        $this->myImage = null;
+        $this->title = $title;
+        $this->link = $link;
+        $this->description = $description;
+        $this->items = [];
+        $this->feedUrl = null;
+        $this->image = null;
     }
 
     /**
@@ -50,7 +50,7 @@ class RssFeed implements RssFeedInterface
      */
     public function addItem(RssItemInterface $item): void
     {
-        $this->myItems[] = $item;
+        $this->items[] = $item;
     }
 
     /**
@@ -62,7 +62,7 @@ class RssFeed implements RssFeedInterface
      */
     public function getDescription(): string
     {
-        return $this->myDescription;
+        return $this->description;
     }
 
     /**
@@ -74,7 +74,7 @@ class RssFeed implements RssFeedInterface
      */
     public function getImage(): ?RssImageInterface
     {
-        return $this->myImage;
+        return $this->image;
     }
 
     /**
@@ -86,7 +86,7 @@ class RssFeed implements RssFeedInterface
      */
     public function getLink(): UrlInterface
     {
-        return $this->myLink;
+        return $this->link;
     }
 
     /**
@@ -98,7 +98,7 @@ class RssFeed implements RssFeedInterface
      */
     public function getTitle(): string
     {
-        return $this->myTitle;
+        return $this->title;
     }
 
     /**
@@ -110,7 +110,7 @@ class RssFeed implements RssFeedInterface
      */
     public function setFeedUrl(UrlInterface $url): void
     {
-        $this->myFeedUrl = $url;
+        $this->feedUrl = $url;
     }
 
     /**
@@ -122,7 +122,7 @@ class RssFeed implements RssFeedInterface
      */
     public function setImage(RssImageInterface $image): void
     {
-        $this->myImage = $image;
+        $this->image = $image;
     }
 
     /**
@@ -134,25 +134,25 @@ class RssFeed implements RssFeedInterface
      */
     public function toXml(): \SimpleXMLElement
     {
-        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->myFeedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
+        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->feedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
 
         $channel = $result->addChild('channel');
-        $channel->addChild('title', self::encode($this->myTitle));
-        $channel->addChild('link', self::encode($this->myLink->__toString()));
-        $channel->addChild('description', self::encode($this->myDescription));
+        $channel->addChild('title', self::encode($this->title));
+        $channel->addChild('link', self::encode($this->link->__toString()));
+        $channel->addChild('description', self::encode($this->description));
 
-        if ($this->myFeedUrl !== null) {
+        if ($this->feedUrl !== null) {
             $atomLink = $channel->addChild('atom:atom:link');
-            $atomLink->addAttribute('href', self::encode($this->myFeedUrl->__toString()));
+            $atomLink->addAttribute('href', self::encode($this->feedUrl->__toString()));
             $atomLink->addAttribute('rel', 'self');
             $atomLink->addAttribute('type', 'application/rss+xml');
         }
 
-        if ($this->myImage !== null) {
-            self::addSimpleXmlChild($channel, $this->myImage->toXml());
+        if ($this->image !== null) {
+            self::addSimpleXmlChild($channel, $this->image->toXml());
         }
 
-        foreach ($this->myItems as $item) {
+        foreach ($this->items as $item) {
             self::addSimpleXmlChild($channel, $item->toXml());
         }
 
@@ -191,10 +191,10 @@ class RssFeed implements RssFeedInterface
      */
     private static function addSimpleXmlChild(\SimpleXMLElement $root, \SimpleXMLElement $child): void
     {
-        $node = $root->addChild($child->getName(), (string) $child);
+        $node = $root->addChild($child->getName(), (string)$child);
 
         foreach ($child->attributes() as $attributeName => $attributeValue) {
-            $node->addAttribute($attributeName, (string) $attributeValue);
+            $node->addAttribute($attributeName, (string)$attributeValue);
         }
 
         foreach ($child->children() as $c) {
@@ -203,32 +203,32 @@ class RssFeed implements RssFeedInterface
     }
 
     /**
-     * @var string My description.
+     * @var string The description.
      */
-    private $myDescription;
+    private $description;
 
     /**
-     * @var UrlInterface My link.
+     * @var UrlInterface The link.
      */
-    private $myLink;
+    private $link;
 
     /**
-     * @var string My title.
+     * @var string The title.
      */
-    private $myTitle;
+    private $title;
 
     /**
-     * @var RssItemInterface[] My items.
+     * @var RssItemInterface[] The items.
      */
-    private $myItems;
+    private $items;
 
     /**
-     * @var UrlInterface|null My feed url.
+     * @var UrlInterface|null The feed url.
      */
-    private $myFeedUrl;
+    private $feedUrl;
 
     /**
-     * @var RssImageInterface|null My image.
+     * @var RssImageInterface|null The image.
      */
-    private $myImage;
+    private $image;
 }
