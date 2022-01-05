@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed\Tests;
 
 use DataTypes\Url;
+use DateTimeImmutable;
+use DateTimeZone;
 use MichaelHall\RssFeed\RssFeed;
 use MichaelHall\RssFeed\RssImage;
 use MichaelHall\RssFeed\RssItem;
@@ -36,8 +38,8 @@ class RssFeedTest extends TestCase
     public function testFeedWithItems()
     {
         $rssFeed = new RssFeed('The Title', Url::parse('https://example.com/'), 'This is the description.');
-        $rssFeed->addItem(new RssItem('First Item', Url::parse('https://example.com/item_1'), 'This is the first item.', new \DateTimeImmutable('2017-07-26 18:30:00', new \DateTimeZone('Europe/Stockholm'))));
-        $rssFeed->addItem(new RssItem('Second Item', Url::parse('https://example.com/item_2'), 'This is the second item.', new \DateTimeImmutable('2017-07-26 20:30:00', new \DateTimeZone('Europe/Stockholm'))));
+        $rssFeed->addItem(new RssItem('First Item', Url::parse('https://example.com/item_1'), 'This is the first item.', new DateTimeImmutable('2017-07-26 18:30:00', new DateTimeZone('Europe/Stockholm'))));
+        $rssFeed->addItem(new RssItem('Second Item', Url::parse('https://example.com/item_2'), 'This is the second item.', new DateTimeImmutable('2017-07-26 20:30:00', new DateTimeZone('Europe/Stockholm'))));
 
         self::assertSame('The Title', $rssFeed->getTitle());
         self::assertSame('https://example.com/', $rssFeed->getLink()->__toString());
@@ -102,8 +104,8 @@ class RssFeedTest extends TestCase
     public function testFeedWithImageAndItems()
     {
         $rssFeed = new RssFeed('The Title', Url::parse('https://example.com/'), 'This is the description.');
-        $rssFeed->addItem(new RssItem('First Item', Url::parse('https://example.com/item_1'), 'This is the first item.', new \DateTimeImmutable('2017-07-26 18:30:00', new \DateTimeZone('Europe/Stockholm'))));
-        $rssFeed->addItem(new RssItem('Second Item', Url::parse('https://example.com/item_2'), 'This is the second item.', new \DateTimeImmutable('2017-07-26 20:30:00', new \DateTimeZone('Europe/Stockholm'))));
+        $rssFeed->addItem(new RssItem('First Item', Url::parse('https://example.com/item_1'), 'This is the first item.', new DateTimeImmutable('2017-07-26 18:30:00', new DateTimeZone('Europe/Stockholm'))));
+        $rssFeed->addItem(new RssItem('Second Item', Url::parse('https://example.com/item_2'), 'This is the second item.', new DateTimeImmutable('2017-07-26 20:30:00', new DateTimeZone('Europe/Stockholm'))));
 
         $rssImage = new RssImage(Url::parse('https://expamle.com/image.jpg'), 'The image', Url::parse('https://example.com/start'));
         $rssFeed->setImage($rssImage);

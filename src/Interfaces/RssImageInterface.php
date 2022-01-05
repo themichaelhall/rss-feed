@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed\Interfaces;
 
 use DataTypes\Interfaces\UrlInterface;
+use SimpleXMLElement;
 
 /**
  * Interface representing an RSS image.
@@ -51,9 +52,9 @@ interface RssImageInterface
      *
      * @since 2.1.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement;
+    public function toXml(): SimpleXMLElement;
 
     /**
      * Returns the image as a string.

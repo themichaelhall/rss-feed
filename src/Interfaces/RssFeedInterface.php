@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed\Interfaces;
 
 use DataTypes\Interfaces\UrlInterface;
+use SimpleXMLElement;
 
 /**
  * Interface representing an RSS feed.
@@ -87,9 +88,9 @@ interface RssFeedInterface
      *
      * @since 1.0.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement;
+    public function toXml(): SimpleXMLElement;
 
     /**
      * Returns the item as a string.

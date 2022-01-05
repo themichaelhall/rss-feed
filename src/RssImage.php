@@ -12,6 +12,7 @@ namespace MichaelHall\RssFeed;
 
 use DataTypes\Interfaces\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssImageInterface;
+use SimpleXMLElement;
 
 /**
  * Class representing an RSS image.
@@ -77,11 +78,11 @@ class RssImage implements RssImageInterface
      *
      * @since 2.1.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement
+    public function toXml(): SimpleXMLElement
     {
-        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><image/>');
+        $result = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><image/>');
         $result->addChild('url', self::encode($this->url->__toString()));
         $result->addChild('title', self::encode($this->title));
         $result->addChild('link', self::encode($this->link->__toString()));

@@ -11,7 +11,9 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed;
 
 use DataTypes\Interfaces\UrlInterface;
+use DateTimeImmutable;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
+use SimpleXMLElement;
 
 /**
  * Class representing an RSS item.
@@ -25,12 +27,12 @@ class RssItem implements RssItemInterface
      *
      * @since 1.0.0
      *
-     * @param string             $title       The title.
-     * @param UrlInterface       $link        The link.
-     * @param string             $description The description.
-     * @param \DateTimeImmutable $pubDate     The publication date.
+     * @param string            $title       The title.
+     * @param UrlInterface      $link        The link.
+     * @param string            $description The description.
+     * @param DateTimeImmutable $pubDate     The publication date.
      */
-    public function __construct(string $title, UrlInterface $link, string $description, \DateTimeImmutable $pubDate)
+    public function __construct(string $title, UrlInterface $link, string $description, DateTimeImmutable $pubDate)
     {
         $this->title = $title;
         $this->link = $link;
@@ -81,9 +83,9 @@ class RssItem implements RssItemInterface
      *
      * @since 1.0.0
      *
-     * @return \DateTimeImmutable The publication date.
+     * @return DateTimeImmutable The publication date.
      */
-    public function getPubDate(): \DateTimeImmutable
+    public function getPubDate(): DateTimeImmutable
     {
         return $this->pubDate;
     }
@@ -131,15 +133,15 @@ class RssItem implements RssItemInterface
      *
      * @since 1.0.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement
+    public function toXml(): SimpleXMLElement
     {
-        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item/>');
+        $result = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><item/>');
         $result->addChild('title', self::encode($this->title));
         $result->addChild('link', self::encode($this->link->__toString()));
         $result->addChild('description', self::encode($this->description));
-        $result->addChild('pubDate', self::encode($this->pubDate->format(\DATE_RSS)));
+        $result->addChild('pubDate', self::encode($this->pubDate->format(DATE_RSS)));
         $result->addChild('guid', self::encode($this->guid))->addAttribute('isPermaLink', $this->guidIsPermaLink ? 'true' : 'false');
 
         return $result;
@@ -180,7 +182,7 @@ class RssItem implements RssItemInterface
     private $link;
 
     /**
-     * @var \DateTimeImmutable The publication date.
+     * @var DateTimeImmutable The publication date.
      */
     private $pubDate;
 

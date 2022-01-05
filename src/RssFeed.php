@@ -14,6 +14,7 @@ use DataTypes\Interfaces\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssFeedInterface;
 use MichaelHall\RssFeed\Interfaces\RssImageInterface;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
+use SimpleXMLElement;
 
 /**
  * Class representing an RSS feed.
@@ -130,11 +131,11 @@ class RssFeed implements RssFeedInterface
      *
      * @since 1.0.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement
+    public function toXml(): SimpleXMLElement
     {
-        $result = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->feedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
+        $result = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . ($this->feedUrl !== null ? ' xmlns:atom="http://www.w3.org/2005/Atom"' : '') . '/>');
 
         $channel = $result->addChild('channel');
         $channel->addChild('title', self::encode($this->title));
@@ -186,10 +187,10 @@ class RssFeed implements RssFeedInterface
     /**
      * Adds a SimpleXMLElement as a child to a root element.
      *
-     * @param \SimpleXMLElement $root  The root element.
-     * @param \SimpleXMLElement $child The child element.
+     * @param SimpleXMLElement $root  The root element.
+     * @param SimpleXMLElement $child The child element.
      */
-    private static function addSimpleXmlChild(\SimpleXMLElement $root, \SimpleXMLElement $child): void
+    private static function addSimpleXmlChild(SimpleXMLElement $root, SimpleXMLElement $child): void
     {
         $node = $root->addChild($child->getName(), strval($child));
 

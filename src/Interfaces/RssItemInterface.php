@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed\Interfaces;
 
 use DataTypes\Interfaces\UrlInterface;
+use DateTimeImmutable;
+use SimpleXMLElement;
 
 /**
  * Interface representing an RSS item.
@@ -51,9 +53,9 @@ interface RssItemInterface
      *
      * @since 1.0.0
      *
-     * @return \DateTimeImmutable The publication date.
+     * @return DateTimeImmutable The publication date.
      */
-    public function getPubDate(): \DateTimeImmutable;
+    public function getPubDate(): DateTimeImmutable;
 
     /**
      * Returns the title.
@@ -88,9 +90,9 @@ interface RssItemInterface
      *
      * @since 1.0.0
      *
-     * @return \SimpleXMLElement The XML node.
+     * @return SimpleXMLElement The XML node.
      */
-    public function toXml(): \SimpleXMLElement;
+    public function toXml(): SimpleXMLElement;
 
     /**
      * Returns the item as a string.

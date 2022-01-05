@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MichaelHall\RssFeed\Tests;
 
 use DataTypes\Url;
+use DateTimeImmutable;
+use DateTimeZone;
 use MichaelHall\RssFeed\RssItem;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +20,7 @@ class RssItemTest extends TestCase
      */
     public function testItemWithStandardValues()
     {
-        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new \DateTimeImmutable('2017-01-02 10:20:30', new \DateTimeZone('Europe/Stockholm')));
+        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
 
         self::assertSame('The Title', $rssItem->getTitle());
         self::assertSame('https://example.com/', $rssItem->getLink()->__toString());
@@ -35,7 +37,7 @@ class RssItemTest extends TestCase
      */
     public function testItemWithPermalinkGuid()
     {
-        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new \DateTimeImmutable('2017-01-02 10:20:30', new \DateTimeZone('Europe/Stockholm')));
+        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
         $rssItem->setGuid('http://example.com/foo', true);
 
         self::assertSame('The Title', $rssItem->getTitle());
@@ -53,7 +55,7 @@ class RssItemTest extends TestCase
      */
     public function testItemWithNonPermalinkGuid()
     {
-        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new \DateTimeImmutable('2017-01-02 10:20:30', new \DateTimeZone('Europe/Stockholm')));
+        $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
         $rssItem->setGuid('FooBar', false);
 
         self::assertSame('The Title', $rssItem->getTitle());
@@ -71,7 +73,7 @@ class RssItemTest extends TestCase
      */
     public function testEncodeValues()
     {
-        $rssItem = new RssItem('Foo & <Bar>', Url::parse('https://example.com/?foo&bar'), 'This is the <description> & Baz.', new \DateTimeImmutable('2017-01-02 10:20:30', new \DateTimeZone('Europe/Stockholm')));
+        $rssItem = new RssItem('Foo & <Bar>', Url::parse('https://example.com/?foo&bar'), 'This is the <description> & Baz.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
 
         self::assertSame('Foo & <Bar>', $rssItem->getTitle());
         self::assertSame('https://example.com/?foo&bar', $rssItem->getLink()->__toString());
