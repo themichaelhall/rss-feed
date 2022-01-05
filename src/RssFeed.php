@@ -191,10 +191,10 @@ class RssFeed implements RssFeedInterface
      */
     private static function addSimpleXmlChild(\SimpleXMLElement $root, \SimpleXMLElement $child): void
     {
-        $node = $root->addChild($child->getName(), (string)$child);
+        $node = $root->addChild($child->getName(), strval($child));
 
         foreach ($child->attributes() as $attributeName => $attributeValue) {
-            $node->addAttribute($attributeName, (string)$attributeValue);
+            $node->addAttribute($attributeName, strval($attributeValue));
         }
 
         foreach ($child->children() as $c) {
