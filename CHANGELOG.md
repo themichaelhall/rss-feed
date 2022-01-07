@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [2.2.0] - 2022-01-07
 - Changed required PHP version to >= 7.3.
 - Changed required datatypes version to 2.4.
