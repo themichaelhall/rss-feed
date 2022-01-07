@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\RssFeed\Tests;
 
-use DataTypes\Url;
+use DataTypes\Net\Url;
 use DateTimeImmutable;
 use DateTimeZone;
 use MichaelHall\RssFeed\RssItem;
@@ -38,16 +38,16 @@ class RssItemTest extends TestCase
     public function testItemWithPermalinkGuid()
     {
         $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
-        $rssItem->setGuid('http://example.com/foo', true);
+        $rssItem->setGuid('https://example.com/foo', true);
 
         self::assertSame('The Title', $rssItem->getTitle());
         self::assertSame('https://example.com/', $rssItem->getLink()->__toString());
         self::assertSame('This is the description.', $rssItem->getDescription());
         self::assertSame('2017-01-02 10:20:30 CET', $rssItem->getPubDate()->format('Y-m-d H:i:s T'));
-        self::assertSame('http://example.com/foo', $rssItem->getGuid());
+        self::assertSame('https://example.com/foo', $rssItem->getGuid());
         self::assertTrue($rssItem->isGuidPermaLink());
-        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">http://example.com/foo</guid></item>\n", $rssItem->toXml()->asXML());
-        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">http://example.com/foo</guid></item>\n", $rssItem->__toString());
+        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">https://example.com/foo</guid></item>\n", $rssItem->toXml()->asXML());
+        self::assertSame("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<item><title>The Title</title><link>https://example.com/</link><description>This is the description.</description><pubDate>Mon, 02 Jan 2017 10:20:30 +0100</pubDate><guid isPermaLink=\"true\">https://example.com/foo</guid></item>\n", $rssItem->__toString());
     }
 
     /**

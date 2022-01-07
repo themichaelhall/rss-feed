@@ -15,7 +15,7 @@
   ],
   "require": {
     "php": ">=7.3",
-    "datatypes/datatypes": "^2.0",
+    "datatypes/datatypes": "^2.4",
     "ext-simplexml": "*"
   },
   "require-dev": {

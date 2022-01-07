@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\RssFeed;
 
-use DataTypes\Interfaces\UrlInterface;
+use DataTypes\Net\UrlInterface;
 use DateTimeImmutable;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;
 use SimpleXMLElement;

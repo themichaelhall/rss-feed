@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\RssFeed\Tests;
 
-use DataTypes\Url;
+use DataTypes\Net\Url;
 use MichaelHall\RssFeed\RssImage;
 use PHPUnit\Framework\TestCase;
 

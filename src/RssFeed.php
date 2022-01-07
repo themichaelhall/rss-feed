@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\RssFeed;
 
-use DataTypes\Interfaces\UrlInterface;
+use DataTypes\Net\UrlInterface;
 use MichaelHall\RssFeed\Interfaces\RssFeedInterface;
 use MichaelHall\RssFeed\Interfaces\RssImageInterface;
 use MichaelHall\RssFeed\Interfaces\RssItemInterface;

@@ -25,22 +25,26 @@ $ composer require michaelhall/rss-feed
 
 require __DIR__ . '/vendor/autoload.php';
 
+use DataTypes\Net\Url;
+use MichaelHall\RssFeed\RssFeed;
+use MichaelHall\RssFeed\RssItem;
+
 // Create the feed.
-$feed = new \MichaelHall\RssFeed\RssFeed(
-    'Feed Title', 
-    \DataTypes\Url::parse('https://example.com/'),
+$feed = new RssFeed(
+    'Feed Title',
+    Url::parse('https://example.com/'),
     'The feed description.'
 );
 
 // This is optional but recommended by W3C feed validator.
-$feed->setFeedUrl(\DataTypes\Url::parse('https://example.com/path/to/feed'));
+$feed->setFeedUrl(Url::parse('https://example.com/path/to/feed'));
 
 // Add an item.
-$feedItem = new \MichaelHall\RssFeed\RssItem(
-   'Item Title',
-   \DataTypes\Url::parse('https://example.com/path/to/item-page'),
-   'The item description',
-   new \DateTimeImmutable('2017-08-22 19:56:00')
+$feedItem = new RssItem(
+    'Item Title',
+    Url::parse('https://example.com/path/to/item-page'),
+    'The item description',
+    new DateTimeImmutable('2017-08-22 19:56:00')
 );
 
 $feed->addItem($feedItem);
@@ -52,10 +56,12 @@ echo $feed;
 ### Add an image to the feed
 
 ```php
+use MichaelHall\RssFeed\RssImage;
+
 $feedImage = new RssImage(
-   \DataTypes\Url::parse('https://example.com/path/to/image'),
-   'Image Title',
-   \DataTypes\Url::parse('https://example.com/')
+    Url::parse('https://example.com/path/to/image'),
+    'Image Title',
+    Url::parse('https://example.com/')
 );
 
 $feed->setImage($feedImage);

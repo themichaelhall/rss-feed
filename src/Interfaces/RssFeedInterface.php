@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\RssFeed\Interfaces;
 
-use DataTypes\Interfaces\UrlInterface;
+use DataTypes\Net\UrlInterface;
 use SimpleXMLElement;
 
 /**
