@@ -12,13 +12,14 @@ namespace MichaelHall\RssFeed\Interfaces;
 
 use DataTypes\Net\UrlInterface;
 use SimpleXMLElement;
+use Stringable;
 
 /**
  * Interface representing an RSS feed.
  *
  * @since 1.0.0
  */
-interface RssFeedInterface
+interface RssFeedInterface extends Stringable
 {
     /**
      * Adds an item to the feed.
@@ -91,13 +92,4 @@ interface RssFeedInterface
      * @return SimpleXMLElement The XML node.
      */
     public function toXml(): SimpleXMLElement;
-
-    /**
-     * Returns the item as a string.
-     *
-     * @since 1.0.0
-     *
-     * @return string The item as a string.
-     */
-    public function __toString(): string;
 }

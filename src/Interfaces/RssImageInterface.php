@@ -12,13 +12,14 @@ namespace MichaelHall\RssFeed\Interfaces;
 
 use DataTypes\Net\UrlInterface;
 use SimpleXMLElement;
+use Stringable;
 
 /**
  * Interface representing an RSS image.
  *
  * @since 2.1.0
  */
-interface RssImageInterface
+interface RssImageInterface extends Stringable
 {
     /**
      * Returns the link.
@@ -55,13 +56,4 @@ interface RssImageInterface
      * @return SimpleXMLElement The XML node.
      */
     public function toXml(): SimpleXMLElement;
-
-    /**
-     * Returns the image as a string.
-     *
-     * @since 2.1.0
-     *
-     * @return string The image as a string.
-     */
-    public function __toString(): string;
 }
