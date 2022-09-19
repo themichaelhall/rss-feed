@@ -56,7 +56,7 @@ class RssItemTest extends TestCase
     public function testItemWithNonPermalinkGuid()
     {
         $rssItem = new RssItem('The Title', Url::parse('https://example.com/'), 'This is the description.', new DateTimeImmutable('2017-01-02 10:20:30', new DateTimeZone('Europe/Stockholm')));
-        $rssItem->setGuid('FooBar', false);
+        $rssItem->setGuid('FooBar');
 
         self::assertSame('The Title', $rssItem->getTitle());
         self::assertSame('https://example.com/', $rssItem->getLink()->__toString());
