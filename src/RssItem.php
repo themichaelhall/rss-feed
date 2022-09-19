@@ -174,30 +174,30 @@ class RssItem implements RssItemInterface
     /**
      * @var string The description.
      */
-    private $description;
+    private string $description;
 
     /**
      * @var UrlInterface The link.
      */
-    private $link;
+    private UrlInterface $link;
 
     /**
      * @var DateTimeImmutable The publication date.
      */
-    private $pubDate;
+    private DateTimeImmutable $pubDate;
 
     /**
      * @var string The title.
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string The GUID.
      */
-    private $guid;
+    private string $guid;
 
     /**
      * @var bool True if GUID is perma link, false otherwise.
      */
-    private $guidIsPermaLink;
+    private bool $guidIsPermaLink;
 }

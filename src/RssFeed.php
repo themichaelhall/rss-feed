@@ -206,30 +206,30 @@ class RssFeed implements RssFeedInterface
     /**
      * @var string The description.
      */
-    private $description;
+    private string $description;
 
     /**
      * @var UrlInterface The link.
      */
-    private $link;
+    private UrlInterface $link;
 
     /**
      * @var string The title.
      */
-    private $title;
+    private string $title;
 
     /**
      * @var RssItemInterface[] The items.
      */
-    private $items;
+    private array $items;
 
     /**
      * @var UrlInterface|null The feed url.
      */
-    private $feedUrl;
+    private ?UrlInterface $feedUrl;
 
     /**
      * @var RssImageInterface|null The image.
      */
-    private $image;
+    private ?RssImageInterface $image;
 }

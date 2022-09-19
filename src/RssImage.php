@@ -117,15 +117,15 @@ class RssImage implements RssImageInterface
     /**
      * @var UrlInterface The url.
      */
-    private $url;
+    private UrlInterface $url;
 
     /**
      * @var string The title.
      */
-    private $title;
+    private string $title;
 
     /**
      * @var UrlInterface The link.
      */
-    private $link;
+    private UrlInterface $link;
 }
