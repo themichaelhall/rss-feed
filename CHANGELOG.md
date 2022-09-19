@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [3.0.0] - 2022-09-19
 - Changed required PHP version to >= 8.0.
 - Changed required datatypes version to 3.0.
